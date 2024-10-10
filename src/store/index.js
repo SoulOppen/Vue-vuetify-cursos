@@ -2,26 +2,33 @@ import { createStore } from "vuex";
 
 const store = createStore({
   state: {
-    count: 0,
+    courses: [],
+    load: false,
+  },
+  getters: {
+    findCourse(state) {
+      return (id) => state.courses.find((item) => item.id === id);
+    },
   },
   mutations: {
-    increment(state) {
-      state.count++;
+    add(state, obj) {
+      if (!state.load) {
+        state.courses = [...state.courses, obj];
+      }
     },
-    decrement(state) {
-      state.count--;
+    reset(state) {
+      state.courses = [];
+    },
+    loaded(state) {
+      state.load = true;
     },
   },
   actions: {
-    incrementAsync({ commit }) {
-      setTimeout(() => {
-        commit("increment");
-      }, 1000);
+    agregarFetch({ commit }, obj) {
+      commit("add", obj);
     },
-  },
-  getters: {
-    getCount(state) {
-      return state.count;
+    changeStatus({ commit }) {
+      commit("loaded");
     },
   },
 });
