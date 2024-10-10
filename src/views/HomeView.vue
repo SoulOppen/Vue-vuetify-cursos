@@ -4,7 +4,6 @@ import {computed,onMounted} from 'vue';
 import { useStore } from 'vuex';
 const store=useStore();
 const cursos=computed(()=>store.state.courses)
-const load= computed(()=>store.state.load)
 const cargarCursos=async()=>{
   try {
           const response = await fetch('/cursos.json');

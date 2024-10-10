@@ -15,39 +15,39 @@ const curso=computed(()=>store.getters.findCourse(prop.id))
     <VCard>
         <VImg :src="curso.img" class="w-75 my-4 mx-auto" height="5rem"></VImg>
         <VCardTitle>{{curso.nombre}}</VCardTitle>
-        <VCardSubtitle class="d-block w-75 mx-auto">Información</VCardSubtitle>
+        <VCardSubtitle>Información</VCardSubtitle>
         <div class="pa-4">
-            <VCardItem class="py-0 ma-0">
+            <VCardItem class="pa-0 ma-0">
                 <div class="d-flex w-75 align-center justify-space-between mx-auto my-border">
                     <div class="size"></div>
-                    <div class="flex1 pa-2">
+                    <div class="flex1 my-2">
                         <p>Costo:<span>{{curso.costo}}</span></p>
                         <p>Duración:<span>{{curso.duracion}}</span></p>
                     </div>
                 </div>
             </VCardItem>
-            <VCardItem class="py-0 ma-0">
+            <VCardItem class="pa-0 ma-0">
                 <div class="d-flex w-75 align-center justify-space-between mx-auto  my-border">
                     <div class="size"></div>
-                <div class="flex1 pa-2">
+                <div class="flex1 my-2">
                     <p>Cupos:<span>{{curso.cupos}}</span></p>
                     <p>Completado:<span>{{curso.cupos>curso.inscritos?'No':'Sí'}}</span></p>
                 </div>
             </div>
             </VCardItem>
-            <VCardItem class="py-0 ma-0">
+            <VCardItem class="pa-0 ma-0">
                 <div class="d-flex w-75 align-center justify-space-between mx-auto  my-border">
                     <div class="size"></div>
-                    <div class="flex1 pa-2">
+                    <div class="flex1 my-2">
                         <p>Fecha de registro:</p>
                         <p>{{curso.fecha_registro}}</p>
                     </div>
                 </div>
             </VCardItem>
-            <VCardItem class="py-0 ma-0">
+            <VCardItem class="pa-0 ma-0">
                 <div class="d-flex w-75 align-center justify-lg-space-between mx-auto  my-border">
                     <div class="size"></div>
-                <div class="flex1 pa-2">
+                <div class="flex1 my-2">
                     <p>Descripción:</p>
                     <p class="text-justify">{{curso.descripcion}}</p>
                 </div>
