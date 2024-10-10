@@ -8,7 +8,6 @@ const prop=defineProps({
         required:true
     }
 })
-console.log(prop.id)
 const curso=computed(()=>store.getters.findCourse(prop.id))
 </script>
 <template>
@@ -68,7 +67,6 @@ const curso=computed(()=>store.getters.findCourse(prop.id))
         background-color: black;
         transform: translateX(-50%);
         box-shadow: 0 0 2px rgb(133, 133, 133);
-        z-index: 5;
     }
     .flex1{
         flex: 1;

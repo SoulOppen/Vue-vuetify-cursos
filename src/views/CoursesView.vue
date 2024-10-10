@@ -1,4 +1,9 @@
 <script setup>
+import TableItemComponent from '@/components/TableItemComponent.vue';
+import {computed} from 'vue'
+import { useStore } from 'vuex';
+const store=useStore();
+const cursos=computed(()=>store.state.courses)
 </script>
 
 <template>
@@ -35,7 +40,7 @@
       </tr>
     </thead>
     <tbody>
-
+      <TableItemComponent v-for="curso in cursos" :key="curso.id" :id="curso.id"/>
     </tbody>
   </v-table>
   </main>
