@@ -9,8 +9,8 @@ const prop=defineProps({
     }
 })
 const curso=computed(()=>store.getters.findCourse(prop.id));
-console.log(curso,curso.completado)
 const completado=computed(()=>curso.value.completado? 'si':'no');
+const classCompletado=computed(()=>curso.value.completado? 'bg-blue':'bg-grey')
 </script>
 <template>
     <tr>
@@ -27,13 +27,19 @@ const completado=computed(()=>curso.value.completado? 'si':'no');
             {{ curso.duracion}}
         </td>
         <td>
-            {{curso.costo}}
+            <div class="rounded-pill bg-green text-white text-center pa-2">
+                ${{curso.costo}}
+            </div>
         </td>
         <td>
-            {{ completado}}
+            <div class="d-block rounded-pill w-75 text-white text-center pa-2 mx-auto" :class="classCompletado">
+                {{ completado}}
+            </div>
         </td>
         <td>
-            {{ curso.fecha_registro}}
+            <div class="rounded-pill bg-green text-white text-center pa-2">
+                {{ curso.fecha_registro}}
+            </div>
         </td>
         <td>
             <VBtnGroup class="px-4 py-2">

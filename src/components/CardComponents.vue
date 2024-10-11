@@ -18,7 +18,7 @@ const curso=computed(()=>store.getters.findCourse(prop.id))
         <div class="pa-4">
             <VCardItem class="pa-0 ma-0">
                 <div class="d-flex w-75 align-center justify-space-between mx-auto my-border">
-                    <div class="size"></div>
+                    <div class="size even"></div>
                     <div class="flex1 my-2">
                         <p>Costo:<span>{{curso.costo}}</span></p>
                         <p>Duración:<span>{{curso.duracion}}</span></p>
@@ -36,7 +36,7 @@ const curso=computed(()=>store.getters.findCourse(prop.id))
             </VCardItem>
             <VCardItem class="pa-0 ma-0">
                 <div class="d-flex w-75 align-center justify-space-between mx-auto  my-border">
-                    <div class="size"></div>
+                    <div class="size even"></div>
                     <div class="flex1 my-2">
                         <p>Fecha de registro:</p>
                         <p>{{curso.fecha_registro}}</p>
@@ -44,7 +44,7 @@ const curso=computed(()=>store.getters.findCourse(prop.id))
                 </div>
             </VCardItem>
             <VCardItem class="pa-0 ma-0">
-                <div class="d-flex w-75 align-center justify-lg-space-between mx-auto  my-border">
+                <div class="d-flex w-75 align-center justify-space-between mx-auto  my-border">
                     <div class="size"></div>
                 <div class="flex1 my-2">
                     <p>Descripción:</p>
@@ -63,11 +63,14 @@ const curso=computed(()=>store.getters.findCourse(prop.id))
         border:5px solid white;
         border-radius: 100%;
         aspect-ratio: 1/1;
-        width: 15%;
-        background-color: black;
+        width: 20%;
+        background-color: darkolivegreen;
         transform: translateX(-50%);
         box-shadow: 0 0 2px rgb(133, 133, 133);
     }
+   .size.even{
+    background-color:darkblue;
+   }
     .flex1{
         flex: 1;
     }

@@ -9,6 +9,23 @@ const store = createStore({
     findCourse(state) {
       return (id) => state.courses.find((item) => item.id === id);
     },
+    totalCupos(state) {
+      return state.courses.reduce((acc, item) => acc + item.cupos, 0);
+    },
+    totalInscrito(state) {
+      return state.courses.reduce((acc, item) => acc + item.inscritos, 0);
+    },
+    totalCourses(state) {
+      return state.courses.length();
+    },
+    totalCursosActivos(state) {
+      return state.courses.reduce((acc, item) => {
+        if (!item.completado) {
+          return acc + 1;
+        }
+        return acc;
+      }, 0);
+    },
   },
   mutations: {
     add(state, obj) {
