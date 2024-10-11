@@ -11,6 +11,9 @@ const prop=defineProps({
 const curso=computed(()=>store.getters.findCourse(prop.id));
 const completado=computed(()=>curso.value.completado? 'si':'no');
 const classCompletado=computed(()=>curso.value.completado? 'bg-blue':'bg-grey')
+const borrar=()=>{
+    store.dispatch('deleteCourse',{id:prop.id})
+}
 </script>
 <template>
     <tr>
@@ -47,7 +50,7 @@ const classCompletado=computed(()=>curso.value.completado? 'bg-blue':'bg-grey')
                     <VIcon color="green">mdi-pencil</VIcon>
                 </VBtn>
                 <VBtn  icon>
-                    <VIcon color="red">mdi-delete</VIcon>
+                    <VIcon color="red" @click="borrar">mdi-delete</VIcon>
                 </VBtn>
             </VBtnGroup>
         </td>

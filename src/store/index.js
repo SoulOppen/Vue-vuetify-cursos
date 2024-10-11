@@ -33,8 +33,8 @@ const store = createStore({
         state.courses = [...state.courses, obj];
       }
     },
-    reset(state) {
-      state.courses = [];
+    delete(state, id) {
+      state.courses = state.courses.filter((item) => item.id !== id);
     },
     loaded(state) {
       state.load = true;
@@ -43,6 +43,9 @@ const store = createStore({
   actions: {
     agregarFetch({ commit }, obj) {
       commit("add", obj);
+    },
+    deleteCourse({ commit }, obj) {
+      commit("delete", obj.id);
     },
     changeStatus({ commit }) {
       commit("loaded");
