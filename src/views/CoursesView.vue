@@ -41,6 +41,7 @@ const add=()=>{
         fecha_registro: mDate.value,
         descripcion: mDescription.value
       }
+  store.dispatch('agregar',obj)
   console.log(obj)
   clean();
   }
