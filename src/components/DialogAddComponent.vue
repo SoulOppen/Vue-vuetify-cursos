@@ -12,7 +12,7 @@ let obj=reactive(
     "costo": "",
     "duracion": "",
     "cupos": "",
-    "inscritos": "",
+    "inscritos":"",
     "completado": "",
     "fecha_registro":"",
     "descripcion": ""

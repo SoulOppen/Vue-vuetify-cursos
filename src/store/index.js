@@ -34,6 +34,10 @@ const store = createStore({
       }
     },
     addCourse(state, obj) {
+      console.log(obj);
+      obj["cupos"] = Number(obj["cupos"]);
+      obj["inscritos"] = Number(obj["inscritos"]);
+      obj["costo"] = Number(obj["costo"]);
       state.courses = [...state.courses, obj];
     },
     delete(state, id) {
@@ -42,13 +46,24 @@ const store = createStore({
     loaded(state) {
       state.load = true;
     },
+    toSort(state) {
+      state.courses = state.courses.sort((a, b) => {
+        return a.id - b.id;
+      });
+    },
   },
   actions: {
     agregarFetch({ commit }, obj) {
       commit("add", obj);
+      commit("toSort", obj);
     },
     agregar({ commit }, obj) {
       commit("addCourse", obj);
+    },
+    edit({ commit }, obj) {
+      commit("delete", obj.id);
+      commit("addCourse", obj);
+      commit("toSort", obj);
     },
     deleteCourse({ commit }, obj) {
       commit("delete", obj.id);

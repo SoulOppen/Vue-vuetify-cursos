@@ -8,12 +8,12 @@ const prop=defineProps({
         required:true
     }
 })
-const emit=defineEmits(['editar'])
+const emit=defineEmits(['editar','borrar'])
 const curso=computed(()=>store.getters.findCourse(prop.id));
 const completado=computed(()=>curso.value.completado? 'si':'no');
 const classCompletado=computed(()=>curso.value.completado? 'bg-blue':'bg-grey')
 const borrar=()=>{
-    store.dispatch('deleteCourse',{id:prop.id})
+    emit('borrar',prop.id)
 }
 const edit=()=>{
     emit('editar',prop.id)
