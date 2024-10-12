@@ -18,7 +18,7 @@ const mDuracion=ref('');
 const mDate=ref('');
 const mValue=ref('');
 const mDescription=ref('');
-const agregar={
+const agregar=()=>{
   agregarToggle.value=true;
 }
 const clean=()=>{
