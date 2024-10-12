@@ -47,11 +47,11 @@ const add=()=>{
       }
   store.dispatch('agregar',obj)
   clean();
-  agregar.value=false
+  agregarToggle.value=false
   }
 const cancelar=()=>{
   clean();
-  agregar.value=false
+  agregarToggle.value=false
   }
 const edit=(e)=>{
   const curso=store.getters.findCourse(e)
