@@ -8,11 +8,15 @@ const prop=defineProps({
         required:true
     }
 })
+const emit=defineEmits(['editar'])
 const curso=computed(()=>store.getters.findCourse(prop.id));
 const completado=computed(()=>curso.value.completado? 'si':'no');
 const classCompletado=computed(()=>curso.value.completado? 'bg-blue':'bg-grey')
 const borrar=()=>{
     store.dispatch('deleteCourse',{id:prop.id})
+}
+const edit=()=>{
+    emit('editar',prop.id)
 }
 </script>
 <template>
@@ -47,7 +51,7 @@ const borrar=()=>{
         <td>
             <VBtnGroup class="px-4 py-2">
                 <VBtn icon>
-                    <VIcon color="green">mdi-pencil</VIcon>
+                    <VIcon color="green" @click="edit">mdi-pencil</VIcon>
                 </VBtn>
                 <VBtn  icon>
                     <VIcon color="red" @click="borrar">mdi-delete</VIcon>

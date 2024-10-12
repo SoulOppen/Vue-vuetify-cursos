@@ -4,7 +4,8 @@ import CardInfoComponent from '@/components/CardInfoComponent.vue';
 import {ref,computed} from 'vue'
 import { useStore } from 'vuex';
 const store=useStore();
-const agregar=ref(false)
+const agregarToggle=ref(false)
+const editarToggle=ref(false)
 const cursos=computed(()=>store.state.courses)
 const cupos=computed(()=>store.getters.totalCupos)
 const inscritos=computed(()=>store.getters.totalInscrito)
@@ -17,6 +18,9 @@ const mDuracion=ref('');
 const mDate=ref('');
 const mValue=ref('');
 const mDescription=ref('');
+const agregar={
+  agregarToggle.value=true;
+}
 const clean=()=>{
   mName.value='';
   mUrl.value='';
@@ -42,26 +46,39 @@ const add=()=>{
         descripcion: mDescription.value
       }
   store.dispatch('agregar',obj)
-  console.log(obj)
   clean();
+  agregar.value=false
   }
 const cancelar=()=>{
   clean();
   agregar.value=false
   }
+const edit=(e)=>{
+  const curso=store.getters.findCourse(e)
+  mUrl.value=curso.img
+  mName.value=curso.nombre
+  mValue.value=curso.costo
+  mDuracion.value=curso.duracion
+  mCupos.value=curso.cupos
+  mInscritos.value=curso.inscritos
+  mDate.value=curso.fecha_registro
+  mDescription.value=curso.descripcion
+  editarToggle.value=true
+  agregarToggle.value=true
+}
 </script>
 
 <template>
   <main>
     <h1 class="text-center">Administración</h1>
-    <VBtn  color="blue-darken-4" class="d-block w-25 mx-auto" @click="agregar=true">Agregar Curso</VBtn>
+    <VBtn  color="blue-darken-4" class="d-block w-25 mx-auto" @click="agregar">Agregar Curso</VBtn>
     <VDialog
       v-model="agregar"
       class="w-50"
       persistent
     >
       <VCard>
-        <VCardTitle class="text-blue-darken-4">Agregar Curso</VCardTitle>
+        <VCardTitle class="text-blue-darken-4">{{editarToggle?"Editar":"Agregar"}} Curso</VCardTitle>
         <VForm>
           <VTextField
             label="Nombre"
@@ -130,9 +147,9 @@ const cancelar=()=>{
           no-resize>
           </VTextarea>
           <VCardActions class="d-block w-75 mx-auto pa-0">
-            <VBtn class="bg-green" @click="add">Agregar</VBtn>
-            <VBtn class="bg-yellow" @click="clean">Limpiar</VBtn>
-            <VBtn class="bg-red" @click="cancelar">Cancelar</VBtn>
+            <VBtn class="bg-green" @click="add">{{editarToggle?"Editar":"Agregar"}}</VBtn>
+            <VBtn v-if="!editarToggle" class="bg-yellow" @click="clean">Limpiar</VBtn>
+            <VBtn class="bg-red" @click="cancelar">{{editarToggle?"Cerrar":"Cancelar"}}</VBtn>
           </VCardActions>
         </VForm>
       </VCard>
@@ -167,7 +184,7 @@ const cancelar=()=>{
       </tr>
     </thead>
     <tbody v-if="cursos.length>0">
-      <TableItemComponent v-for="curso in cursos" :key="curso.id" :id="curso.id"/>
+      <TableItemComponent v-for="curso in cursos" :key="curso.id" :id="curso.id" @editar="edit"/>
     </tbody>
     <tbody v-else>
       <tr>

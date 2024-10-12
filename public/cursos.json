@@ -35,6 +35,42 @@
         "completado": true,
         "fecha_registro": "05/03/2022",
         "descripcion": "Programando para la web con JavaScript."
+      },
+      {
+        "id": 4,
+        "img":"https://www.w3.org/html/logo/downloads/HTML5_Logo_512.png",
+        "nombre":"HTML Básico",
+        "costo": 10000,
+        "duracion": "1 mes",
+        "cupos": 35,
+        "inscritos":0,
+        "completado": true,
+        "fecha_registro": "31/01/2022",
+        "descripcion":"Aprende HTML 5 y crea tus primeras páginas web paso a paso con decenas de ejercicios."
+      },
+      {
+        "id": 5,
+        "img": "https://logosandtypes.com/wp-content/uploads/2020/08/vue.svg",
+        "nombre": "Vue JS de 0 a 100",
+        "costo":85500,
+        "duracion": "5 meses",
+        "cupos": 35,
+        "inscritos": 35,
+        "completado":false,
+        "fecha_registro": "06/03/2022",
+        "descripcion": "Aprende desde cero como usar VueJS, cómo usarlo en aplicaciones pequeñas y ver lo que ofrece el framework."
+      },
+      {
+        "id": 6,
+        "img":"https://miro.medium.com/max/512/1*9U1toerFxB8aiFRreLxEUQ.png",
+        "nombre": "Estilos con SASS",
+        "costo": 45000,
+        "duracion": "1 mes",
+        "cupos":40,
+        "inscritos": 35,
+        "completado": false,
+        "fecha_registro": "06/03/2022",
+        "descripcion": "Con SASS aprenderás a escribir mejor código de CSS con todas las funciones necesaria"
       }
     ]
   }

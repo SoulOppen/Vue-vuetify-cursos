@@ -30,7 +30,7 @@ const curso=computed(()=>store.getters.findCourse(prop.id))
                     <div class="size"></div>
                 <div class="flex1 my-2">
                     <p>Cupos:<span>{{curso.cupos}}</span></p>
-                    <p>Completado:<span>{{curso.cupos>curso.inscritos?'No':'Sí'}}</span></p>
+                    <p>Completado:<span>{{curso.completado?'Sí':'No'}}</span></p>
                 </div>
             </div>
             </VCardItem>
