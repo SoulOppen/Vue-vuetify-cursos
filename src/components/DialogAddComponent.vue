@@ -1,42 +1,33 @@
 <script setup>
-import {ref} from 'vue'
+import {ref,reactive} from 'vue'
 import { useStore } from 'vuex';
 const store=useStore();
 const emits=defineEmits(['cerrarAgregar']);
 const open=ref(true);
-const mName=ref('');
-const mUrl=ref('');
-const mCupos=ref('');
-const mInscritos=ref('');
-const mDuracion=ref('');
-const mDate=ref('');
-const mValue=ref('');
-const mDescription=ref('');
+let obj=reactive(
+  {
+    "id": "",
+    "img": "",
+    "nombre": "",
+    "costo": "",
+    "duracion": "",
+    "cupos": "",
+    "inscritos": "",
+    "completado": "",
+    "fecha_registro":"",
+    "descripcion": ""
+    }
+  )
 const clean=()=>{
-  mName.value='';
-  mUrl.value='';
-  mCupos.value='';
-  mInscritos.value='';
-  mDuracion.value='';
-  mDate.value='';
-  mValue.value='';
-  mDescription.value='';
+    const keys=Object.keys(obj).filter((item)=>item!=="id"&&item!=="completado");
+    for(let key of keys){
+        obj[key]="";
+    }
 }
 
 const add=()=>{
-  const id= Math.ceil(Math.random()*1000);
-  const obj={
-        id,
-        img: mUrl.value,
-        nombre:mName.value,
-        costo:mValue.value,
-        duracion: mDuracion.value,
-        cupos: mCupos.value,
-        inscritos: mInscritos.value,
-        completado: false,
-        fecha_registro: mDate.value,
-        descripcion: mDescription.value
-      }
+  obj.id= Math.ceil(Math.random()*1000);
+  obj.completado=false
   store.dispatch('agregar',obj)
   emits('cerrarAgregar')
   }
@@ -58,7 +49,7 @@ const cancelar=()=>{
             class="d-block w-75 mx-auto"
             variant="underlined"
             color="blue-darken-4"
-            v-model="mName"
+            v-model="obj.nombre"
           >
           </VTextField>
           <VTextField
@@ -66,7 +57,7 @@ const cancelar=()=>{
             class="d-block w-75 mx-auto"
             variant="underlined"
             color="blue-darken-4"
-            v-model="mUrl"
+            v-model="obj.img"
           >
           </VTextField>
           <VTextField
@@ -75,7 +66,7 @@ const cancelar=()=>{
             variant="underlined"
             color="blue-darken-4"
             type="number"
-            v-model="mCupos"
+            v-model="obj.cupos"
           >
           </VTextField>
           <VTextField
@@ -84,7 +75,7 @@ const cancelar=()=>{
             variant="underlined"
             color="blue-darken-4"
             type="number"
-            v-model="mInscritos"
+            v-model="obj.inscritos"
           >
           </VTextField>
           <VTextField
@@ -92,7 +83,7 @@ const cancelar=()=>{
             class="d-block w-75 mx-auto"
             variant="underlined"
             color="blue-darken-4"
-            v-model="mDuracion"
+            v-model="obj.duracion"
           >
           </VTextField>
           <VTextField
@@ -100,7 +91,7 @@ const cancelar=()=>{
             class="d-block w-75 mx-auto"
             variant="underlined"
             color="blue-darken-4"
-            v-model="mDate"
+            v-model="obj.fecha_registro"
           >
           </VTextField>
           <VTextField
@@ -109,14 +100,14 @@ const cancelar=()=>{
             variant="underlined"
             color="blue-darken-4"
             type="number"
-            v-model="mValue"
+            v-model="obj.costo"
           ></VTextField>
           <VTextarea
           label="Descripción"
           variant="underlined"
           color="blue-darken-4"
           class="d-block w-75 mx-auto"
-          v-model="mDescription"
+          v-model="obj.descripcion"
           no-resize>
           </VTextarea>
           <VCardActions class="d-block w-75 mx-auto pa-0">

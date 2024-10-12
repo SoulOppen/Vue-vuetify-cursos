@@ -2,11 +2,13 @@
 import TableItemComponent from '@/components/TableItemComponent.vue';
 import CardInfoComponent from '@/components/CardInfoComponent.vue';
 import DialogAddComponent from '@/components/DialogAddComponent.vue';
+import DialogEditComponent from '@/components/DialogEditComponent.vue';
 import {ref,computed} from 'vue'
 import { useStore } from 'vuex';
 const store=useStore();
 const agregarToggle=ref(false)
 const editarToggle=ref(false)
+const editarId=ref("")
 const cursos=computed(()=>store.state.courses)
 const cupos=computed(()=>store.getters.totalCupos)
 const inscritos=computed(()=>store.getters.totalInscrito)
@@ -15,23 +17,15 @@ const agregar=()=>{
   agregarToggle.value=true;
 }
 const edit=(e)=>{
-  const curso=store.getters.findCourse(e)
-  mUrl.value=curso.img
-  mName.value=curso.nombre
-  mValue.value=curso.costo
-  mDuracion.value=curso.duracion
-  mCupos.value=curso.cupos
-  mInscritos.value=curso.inscritos
-  mDate.value=curso.fecha_registro
-  mDescription.value=curso.descripcion
-  editarToggle.value=true
-  agregarToggle.value=true
+  editarId.value=e;
+  editarToggle.value=true;
 }
 </script>
 
 <template>
   <main>
     <DialogAddComponent v-if="agregarToggle" @cerrar-agregar="agregarToggle=false"/>
+    <DialogEditComponent v-if="editarToggle" :id="editarId" @cerrar-editar="editarToggle=false"/>
     <h1 class="text-center">Administración</h1>
     <VBtn  color="blue-darken-4" class="d-block w-25 mx-auto" @click="agregar">Agregar Curso</VBtn>
     <VTable class="d-block w-75 mx-auto">
