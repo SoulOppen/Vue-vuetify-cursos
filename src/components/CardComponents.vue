@@ -66,7 +66,7 @@ const curso=computed(()=>store.getters.findCourse(prop.id))
         width: 20%;
         background-color: darkolivegreen;
         transform: translateX(-50%);
-        box-shadow: 0 0 2px rgb(133, 133, 133);
+        box-shadow: 0 0 2px black;
     }
    .size.even{
     background-color:darkblue;
