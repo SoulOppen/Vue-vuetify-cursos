@@ -60,7 +60,7 @@ const cerrarAlert=()=>{
 
 <template>
   <main>
-    <v-alert v-if="message!==''" closable variant="tonal" :color="colorMessage">
+    <v-alert v-if="message!==''" closable variant="tonal" :color="colorMessage" class="pa-0">
       <p class="text-center">{{ message }}</p>
     </v-alert>
     <VDialog
