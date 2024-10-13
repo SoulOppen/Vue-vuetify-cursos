@@ -1,5 +1,5 @@
 <script setup>
-import {ref,reactive,computed,onMounted} from 'vue'
+import {reactive,computed,onMounted} from 'vue'
 import { useStore } from 'vuex';
 const store=useStore();
 const emits=defineEmits(['cerrarEditar'])
@@ -9,7 +9,6 @@ const props=defineProps({
     Required:true
   }
 })
-const open=ref(true);
 let obj=reactive(
   {
     "id": "",
@@ -42,11 +41,6 @@ const cancelar=()=>{
 onMounted(()=>update())
 </script>
 <template>
-    <VDialog
-      v-model="open"
-      class="w-50"
-      persistent
-    >
       <VCard>
         <VCardTitle class="text-green-darken-4">Editar Curso</VCardTitle>
         <VForm>
@@ -129,5 +123,4 @@ onMounted(()=>update())
           </VCardActions>
         </VForm>
       </VCard>
-    </VDialog>
 </template>

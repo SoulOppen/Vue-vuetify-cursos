@@ -20,17 +20,11 @@ const cancelar=()=>{
   }
 </script>
 <template>
-    <VDialog
-      v-model="open"
-      class="w-50"
-      persistent
-    >
-      <VCard>
-        <VCardTitle class="text-green-darken-4">Confirmar eliminar</VCardTitle>
-        <div class="d-flex pa-2">
-          <VBtn class="bg-green mx-2" @click="confirmar">Confirmar</VBtn>
-          <VBtn class="bg-red mx-2" @click="cancelar">Cancelar</VBtn>
-        </div>
-      </VCard>
-    </VDialog>
+   <VCard>
+      <VCardTitle class="text-green-darken-4">Confirmar eliminar</VCardTitle>
+      <div class="d-flex pa-2">
+        <VBtn class="bg-green mx-2" @click="confirmar">Confirmar</VBtn>
+        <VBtn class="bg-red mx-2" @click="cancelar">Cancelar</VBtn>
+      </div>
+    </VCard>
 </template>

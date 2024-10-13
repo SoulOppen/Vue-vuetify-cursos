@@ -1,9 +1,8 @@
 <script setup>
-import {ref,reactive} from 'vue'
+import {reactive} from 'vue'
 import { useStore } from 'vuex';
 const store=useStore();
 const emits=defineEmits(['cerrarAgregar']);
-const open=ref(true);
 let obj=reactive(
   {
     "id": "",
@@ -36,11 +35,7 @@ const cancelar=()=>{
   }
 </script>
 <template>
-    <VDialog
-        v-model="open"
-      class="w-50"
-      persistent
-    >
+
       <VCard>
         <VCardTitle class="text-blue-darken-4">Agregar Curso</VCardTitle>
         <VForm>
@@ -117,5 +112,4 @@ const cancelar=()=>{
           </VCardActions>
         </VForm>
       </VCard>
-    </VDialog>
 </template>

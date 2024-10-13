@@ -1,9 +1,9 @@
 <script setup>
-import TableItemComponent from '@/components/TableItemComponent.vue';
-import CardInfoComponent from '@/components/CardInfoComponent.vue';
 import DialogAddComponent from '@/components/DialogAddComponent.vue';
 import DialogEditComponent from '@/components/DialogEditComponent.vue';
 import DialogConfirmDeleteComponent from '@/components/DialogConfirmDeleteComponent.vue';
+import TableItemComponent from '@/components/TableItemComponent.vue';
+import InfoComponent from '@/components/InfoComponent.vue';
 import {ref,computed} from 'vue'
 import { useStore } from 'vuex';
 const store=useStore();
@@ -13,9 +13,6 @@ const confirmToggle=ref(false)
 const editarId=ref("")
 const confirmId=ref("")
 const cursos=computed(()=>store.state.courses)
-const cupos=computed(()=>store.getters.totalCupos)
-const inscritos=computed(()=>store.getters.totalInscrito)
-const cursosActivos=computed(()=>store.getters.totalCursosActivos)
 const agregar=()=>{
   agregarToggle.value=true;
 }
@@ -31,9 +28,27 @@ const eliminar=(e)=>{
 
 <template>
   <main>
-    <DialogAddComponent v-if="agregarToggle" @cerrar-agregar="agregarToggle=false"/>
-    <DialogEditComponent v-if="editarToggle" :id="editarId" @cerrar-editar="editarToggle=false"/>
-    <DialogConfirmDeleteComponent v-if="confirmToggle" :id="confirmId" @cerrarConfirmar="confirmToggle=false"/>
+    <VDialog
+      v-model="agregarToggle"
+      class="w-50"
+      persistent
+      >
+      <DialogAddComponent @cerrar-agregar="agregarToggle=false"/>
+    </VDialog>
+    <VDialog
+      v-model="editarToggle"
+      class="w-50"
+      persistent
+      >
+      <DialogEditComponent :id="editarId" @cerrar-editar="editarToggle=false"/>
+    </VDialog>
+    <VDialog
+      v-model="confirmToggle"
+      class="w-50"
+      persistent
+      >
+      <DialogConfirmDeleteComponent v-if="confirmToggle" :id="confirmId" @cerrarConfirmar="confirmToggle=false"/>
+    </VDialog>
     <h1 class="text-center">Administración</h1>
     <VBtn  color="blue-darken-4" class="d-block w-25 mx-auto" @click="agregar">Agregar Curso</VBtn>
     <VTable class="d-block w-75 mx-auto">
@@ -76,25 +91,8 @@ const eliminar=(e)=>{
       </tr>
     </tbody>
   </VTable>
-  <VDivider class="d-block w-75 mx-auto"></VDivider>
-  <CardInfoComponent color="text-blue-darken-4" icon="account-multiple">
-    <p>Cantidad total de alumnos permitidos: {{ cupos }} alumnos.</p>
-  </CardInfoComponent>
-  <CardInfoComponent color="text-blue-lighten-1" icon="account-check">
-    <p>Cantidad total de alumnos inscritos: {{ inscritos }} alumnos.</p>
-  </CardInfoComponent>
-  <CardInfoComponent color="text-red-darken-1" icon="account-plus">
-    <p>Cantidad total de cupos restantes: {{ cupos-inscritos }} alumnos.</p>
-  </CardInfoComponent>
-  <CardInfoComponent color="text-grey-darken-3" icon="cancel">
-    <p>Cantidad de cursos terminados: {{cursos.length-cursosActivos}} cursos.</p>
-  </CardInfoComponent>
-  <CardInfoComponent color="text-red" icon="bell-ring">
-    <p>Cantidad total de cursos activos: {{ cursosActivos }} cursos.</p>
-  </CardInfoComponent>
-  <CardInfoComponent color="text-amber-darken-2" icon="bell-ring">
-    <p>Cantidad total de cursos: {{ cursos.length }} cursos.</p>
-  </CardInfoComponent>
+  <v-divider class="border-opacity-75 w-75 mx-auto" color="grey-darken-1"></v-divider>
+  <InfoComponent/>
   </main>
 </template>
 
