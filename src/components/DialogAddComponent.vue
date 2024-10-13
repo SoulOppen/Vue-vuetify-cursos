@@ -44,7 +44,6 @@ const clean=()=>{
 }
 
 const add=()=>{
-  console.log(valid)
   if (valid.value) {
   obj.id= Math.ceil(Math.random()*1000);
   obj.completado=false
@@ -70,7 +69,6 @@ const cancelar=()=>{
             class="d-block w-75 mx-auto"
             variant="underlined"
             color="blue-darken-4"
-            :rules="textRules"
             required
             v-model="obj.nombre"
           >
@@ -133,6 +131,7 @@ const cancelar=()=>{
             color="blue-darken-4"
             type="number"
             :rules="[...numberRules,maxCosto,minCosto]"
+            required
             v-model="obj.costo"
           ></VTextField>
           <VTextarea

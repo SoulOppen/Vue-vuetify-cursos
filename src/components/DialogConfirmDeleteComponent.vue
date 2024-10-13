@@ -2,6 +2,7 @@
 import {ref} from 'vue'
 import { useStore } from 'vuex';
 const store=useStore();
+const valid = ref(false);
 const emits=defineEmits(['cerrarConfirmar'])
 const props=defineProps({
   id:{

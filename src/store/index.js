@@ -34,7 +34,6 @@ const store = createStore({
       }
     },
     addCourse(state, obj) {
-      console.log(obj);
       obj["cupos"] = Number(obj["cupos"]);
       obj["inscritos"] = Number(obj["inscritos"]);
       obj["costo"] = Number(obj["costo"]);
