@@ -7,6 +7,8 @@ import InfoComponent from '@/components/InfoComponent.vue';
 import {ref,computed} from 'vue'
 import { useStore } from 'vuex';
 const store=useStore();
+const message=ref('')
+const colorMessage=ref('blue-darken-4')
 const agregarToggle=ref(false)
 const editarToggle=ref(false)
 const confirmToggle=ref(false)
@@ -16,38 +18,71 @@ const cursos=computed(()=>store.state.courses)
 const agregar=()=>{
   agregarToggle.value=true;
 }
+const agregarCerrar=(e)=>{
+  if(e){
+    message.value=e;
+    colorMessage.value="blue-darken-4"
+  }
+  agregarToggle.value=false;
+  cerrarAlert();
+}
+
 const edit=(e)=>{
   editarId.value=e;
   editarToggle.value=true;
+}
+const editarCerrar=(e)=>{
+  if(e){
+    message.value=e;
+    colorMessage.value="green-darken-4"
+  }
+  editarToggle.value=false;
+  cerrarAlert();
 }
 const eliminar=(e)=>{
   confirmId.value=e;
   confirmToggle.value=true;
 }
+const eliminarCerrar=(e)=>{
+  if(e){
+    message.value=e;
+    colorMessage.value="red"
+  }
+  confirmToggle.value=false;
+  cerrarAlert();
+}
+const cerrarAlert=()=>{
+  setTimeout(()=>{
+    message.value=''
+  },3000)
+}
 </script>
 
 <template>
   <main>
+    <v-alert v-if="message!==''" closable variant="tonal" :color="colorMessage">
+      <p class="text-center">{{ message }}</p>
+    </v-alert>
     <VDialog
       v-model="agregarToggle"
       class="w-50"
       persistent
       >
-      <DialogAddComponent @cerrar-agregar="agregarToggle=false"/>
+      <DialogAddComponent @cerrar-agregar="agregarCerrar"/>
     </VDialog>
     <VDialog
       v-model="editarToggle"
       class="w-50"
       persistent
       >
-      <DialogEditComponent :id="editarId" @cerrar-editar="editarToggle=false"/>
+      <DialogEditComponent :id="editarId" @cerrar-editar="editarCerrar"/>
     </VDialog>
     <VDialog
       v-model="confirmToggle"
       class="w-50"
       persistent
       >
-      <DialogConfirmDeleteComponent v-if="confirmToggle" :id="confirmId" @cerrarConfirmar="confirmToggle=false"/>
+      <DialogConfirmDeleteComponent v-if="confirmToggle" :id="confirmId" @cerrarConfirmar="eliminarCerrar"/>
     </VDialog>
     <h1 class="text-center">Administración</h1>
     <VBtn  color="blue-darken-4" class="d-block w-25 mx-auto" @click="agregar">Agregar Curso</VBtn>

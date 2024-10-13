@@ -48,8 +48,7 @@ const add=()=>{
   obj.id= Math.ceil(Math.random()*1000);
   obj.completado=false
   store.dispatch('agregar',obj)
-  emits('cerrarAgregar')
-  alert('add')
+  emits('cerrarAgregar','Se agrego un curso')
   }
   else{
     alert(valid.value)

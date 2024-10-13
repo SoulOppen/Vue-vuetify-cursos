@@ -61,7 +61,7 @@ const edit=()=>{
       obj.completado= obj.completado.toLowerCase()==='true';
   }
   store.dispatch('edit',obj)
-  emits('cerrarEditar')
+  emits('cerrarEditar','Se edito un curso')
   }
   else{
     alert(valid.value)

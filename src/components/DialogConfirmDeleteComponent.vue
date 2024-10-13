@@ -2,7 +2,6 @@
 import {ref} from 'vue'
 import { useStore } from 'vuex';
 const store=useStore();
-const valid = ref(false);
 const emits=defineEmits(['cerrarConfirmar'])
 const props=defineProps({
   id:{
@@ -10,11 +9,9 @@ const props=defineProps({
     Required:true
   }
 })
-const open=ref(true);
-
 const confirmar=()=>{
   store.dispatch('deleteCourse',props)
-  emits('cerrarConfirmar')
+  emits('cerrarConfirmar','Se elimino un curso')
   }
 const cancelar=()=>{
   emits('cerrarConfirmar')
