@@ -7,10 +7,7 @@ const textRules=[
   v => (v.length >= 3) || 'Min 3 caracteres',
   v => (v.length <= 10) || 'Max 10 caracteres'
 ]
-const numberRules=[
-  v => !!v || 'Propiedad requerida',
-  v => (Number.isInteger(Number(v))) || 'Número tiene que se entero'
-]
+const numberRules=v => (Number.isInteger(Number(v))) || 'Número tiene que se entero'
 const maxPersonas=v => (v<=999) || 'max de personas 999'
 const inscritoMenorACupos=v => (Number(v)<=obj.cupos) || 'Inscritos tiene que ser menos que cupos'
 const dateFormatRule = v => {
@@ -100,7 +97,7 @@ onMounted(()=>update())
             variant="underlined"
             color="green-darken-4"
             type="number"
-            :rules="[...numberRules,maxPersonas]"
+            :rules="[numberRules,maxPersonas]"
             required
             v-model="obj.cupos"
           >
@@ -111,8 +108,7 @@ onMounted(()=>update())
             variant="underlined"
             color="green-darken-4"
             type="number"
-            :rules="[...numberRules,maxPersonas,inscritoMenorACupos]"
-            required
+            :rules="[numberRules,maxPersonas,inscritoMenorACupos]"
             v-model="obj.inscritos"
           >
           </VTextField>
@@ -122,7 +118,6 @@ onMounted(()=>update())
             variant="underlined"
             color="green-darken-4"
             :rules="textRules"
-            required
             v-model="obj.duracion"
           >
           </VTextField>
@@ -142,8 +137,7 @@ onMounted(()=>update())
             variant="underlined"
             color="green-darken-4"
             type="number"
-            :rules="[...numberRules,maxCosto,minCosto]"
-            required
+            :rules="[numberRules,maxCosto,minCosto]"
             v-model="obj.costo"
           ></VTextField>
           <VTextField
