@@ -1,5 +1,4 @@
 <script setup>
-import {ref} from 'vue';
 const prop=defineProps({
     color:{
         type:String,
@@ -12,7 +11,7 @@ const prop=defineProps({
 })
 </script>
 <template>
-    <div class="d-flex w-75 mx-auto my-4 align-center borde pa-2" :class="prop.color">
+    <div class="d-flex w-75 mx-auto my-4 align-center border pa-2" :class="prop.color">
         <VIcon>
             mdi-{{ prop.icon }}
         </VIcon>
